@@ -1,0 +1,4 @@
+<div class="shell" [class.collapsed]="collapsed()">
+  <app-sidebar [collapsed]="collapsed()" (toggle)="collapsed.set(!collapsed())" />
+  <app-main />
+</div>

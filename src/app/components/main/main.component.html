@@ -1,0 +1,47 @@
+<section class="main">
+  <div class="scroller" #scroller>
+    @if (chatService.active(); as chat) {
+    <div class="thread">
+      @for (message of chat.messages; track $index) {
+      <div class="message" [class.mine]="message.role === 'user'" [class.error]="message.error">
+        <div class="bubble">{{ message.content }}</div>
+        @if (message.model) { <span class="model">{{ message.model }}</span> }
+      </div>
+      }
+      @if (chatService.loading()) {
+      <div class="message">
+        <div class="bubble typing"><i></i><i></i><i></i></div>
+      </div>
+      }
+    </div>
+    } @else {
+    <div class="hero">
+      <svg class="orb" viewBox="0 0 100 100" aria-hidden="true">
+        <defs>
+          <radialGradient id="orb-gradient" cx="35%" cy="30%">
+            <stop offset="0" stop-color="#ffd1e3" />
+            <stop offset="0.55" stop-color="#ff8ab5" />
+            <stop offset="1" stop-color="#b58cff" />
+          </radialGradient>
+        </defs>
+        <circle cx="50" cy="50" r="40" fill="url(#orb-gradient)" />
+        <ellipse cx="38" cy="33" rx="13" ry="8" fill="#fff" fill-opacity="0.45" />
+      </svg>
+      <h1>Hey dev, let's build something lovely.</h1>
+      <p>Tell me about your day, or pick something to start with.</p>
+      <div class="grid">
+        @for (s of suggestions; track s.title) {
+        <app-card [title]="s.title" [prompt]="s.prompt" (pick)="send($event)" />
+        }
+      </div>
+    </div>
+    }
+  </div>
+
+  <div class="composer">
+    <textarea #box rows="1" placeholder="Talk to me, baby…" [value]="draft()" (input)="draft.set(box.value)"
+      (keydown.enter)="onEnter($event)"></textarea>
+    <button class="send" type="button" aria-label="Send" [disabled]="chatService.loading() || !draft().trim()"
+      (click)="send(draft())">➤</button>
+  </div>
+</section>
