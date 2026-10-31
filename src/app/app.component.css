@@ -1,0 +1,12 @@
+.shell {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  height: 100vh;
+  transition: grid-template-columns 0.25s;
+}
+
+.shell.collapsed { grid-template-columns: 68px 1fr; }
+
+@media (max-width: 720px) {
+  .shell, .shell.collapsed { grid-template-columns: 68px 1fr; }
+}

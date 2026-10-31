@@ -1,0 +1,22 @@
+<aside>
+  <button class="icon-button" type="button" (click)="toggle.emit()" aria-label="Toggle sidebar">☰</button>
+
+  <button class="new-chat" type="button" (click)="chatService.newChat()">
+    <span class="plus">+</span>
+    @if (!collapsed()) { <span>New chat</span> }
+  </button>
+
+  @if (!collapsed()) {
+    <p class="label">Recent</p>
+    <nav>
+      @for (chat of chatService.chats(); track chat.id) {
+        <div class="row" [class.active]="chat.id === chatService.activeId()">
+          <button class="title" type="button" (click)="chatService.select(chat.id)">{{ chat.title }}</button>
+          <button class="delete" type="button" (click)="chatService.remove(chat.id)" aria-label="Delete chat">×</button>
+        </div>
+      } @empty {
+        <p class="empty">No chats yet.</p>
+      }
+    </nav>
+  }
+</aside>

@@ -1,0 +1,138 @@
+aside {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  height: 100%;
+  padding: 16px 12px;
+  overflow: hidden;
+  background: var(--panel);
+  border-right: 1px solid var(--border);
+  backdrop-filter: blur(10px);
+}
+
+.icon-button {
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
+  background: none;
+  border: 0;
+  border-radius: 10px;
+}
+
+.icon-button:hover {
+  background: var(--accent-soft);
+}
+
+.new-chat {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 44px;
+  padding: 0 12px;
+  font-weight: 700;
+  white-space: nowrap;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid var(--accent);
+  border-radius: 12px;
+}
+
+.new-chat:hover {
+  box-shadow: 0 0 18px var(--accent-glow);
+}
+
+.plus {
+  width: 16px;
+  font-size: 20px;
+  text-align: center;
+}
+
+.label {
+  margin: 6px 6px 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+nav {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 2px;
+  overflow-y: auto;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  border-left: 3px solid transparent;
+  border-radius: 10px;
+}
+
+.row:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.row.active {
+  background: rgba(181, 140, 255, 0.16);
+  border-left-color: var(--accent-2);
+}
+
+.title {
+  flex: 1;
+  min-width: 0;
+  padding: 10px;
+  overflow: hidden;
+  font-size: 14px;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  background: none;
+  border: 0;
+}
+
+.delete {
+  padding: 6px 10px;
+  font-size: 18px;
+  color: var(--muted);
+  background: none;
+  border: 0;
+  opacity: 0;
+}
+
+.new-chat .plus {
+  font-size: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.new-chat .plus::before {
+  content: "♡";
+  font-size: 23px;
+  font-weight: 400;
+  line-height: 1;
+  color: #ff83b5;
+  text-shadow: 0 0 8px rgba(255, 131, 181, 0.35);
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.new-chat:hover .plus::before {
+  content: "♥";
+  color: #ff83b5;
+  transform: scale(1.15);
+}
+
+.row:hover .delete,
+.delete:focus-visible {
+  opacity: 1;
+}
+
+.delete:hover {
+  color: var(--danger);
+}
+
+.empty {
+  padding: 6px;
+  font-size: 13px;
+  color: var(--muted);
+}
